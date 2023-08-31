@@ -1,21 +1,26 @@
 import styles from "./productCard.module.css";
 import Image from "next/image";
 
-export default function ProductCard() {
+interface propsType {
+  hospitalName: string;
+  imgSrc: string;
+}
+
+export default function ProductCard(props: propsType) {
+  const { hospitalName, imgSrc } = props;
   return (
-    <div className={styles.card}>
-      <div className={styles.cardImg}>
+    <div className="w-[20rem] h-[24rem] bg-white rounded-lg shadow-lg">
+      <div className="w-full h-[70%] relative rounded-t-lg">
         <Image
-          src={"/vaccine2.jpg"}
-          alt="vaccine"
+          src={imgSrc}
+          alt="hospital"
           fill={true}
-          objectFit="cover"
+          className="object-cover rounded-t-lg"
           style={{ opacity: 0.6 }}
         />
       </div>
-      <div className={styles.cardText}>
-        <h1>Vaccine is Good</h1>
-        <h3>It the easiest way to protect you from COVID-19</h3>
+      <div className="relative z-20 text-black text-center pt-30">
+        <h2>{hospitalName}</h2>
       </div>
     </div>
   );
