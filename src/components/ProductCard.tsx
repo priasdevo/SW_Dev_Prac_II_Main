@@ -1,4 +1,3 @@
-import styles from "./productCard.module.css";
 import Image from "next/image";
 
 interface propsType {
