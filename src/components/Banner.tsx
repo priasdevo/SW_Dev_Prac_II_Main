@@ -1,10 +1,22 @@
+"use client";
 import Image from "next/image";
+import { useState } from "react";
 
 export default function Banner() {
+  const [currentBanner, setCurrentBanner] = useState(0);
   return (
-    <div className="block p-5 m-0 w-screen h-[40rem] relative">
+    <div
+      className="block p-5 m-0 w-screen h-[40rem] relative"
+      onClick={() => {
+        if (currentBanner === 3) {
+          setCurrentBanner(0);
+        } else {
+          setCurrentBanner((prevBanner) => prevBanner + 1);
+        }
+      }}
+    >
       <Image
-        src={"/vaccine.jpg"}
+        src={`/banner${currentBanner + 1}.jpg`}
         alt="cover"
         fill={true}
         objectFit="cover"
