@@ -1,5 +1,5 @@
 import Image from "next/image";
-
+import ResponsiveCard from "./ResponsiveCard";
 interface propsType {
   hospitalName: string;
   imgSrc: string;
@@ -8,7 +8,7 @@ interface propsType {
 export default function ProductCard(props: propsType) {
   const { hospitalName, imgSrc } = props;
   return (
-    <div className="w-[20rem] h-[24rem] bg-white rounded-lg shadow-lg">
+    <ResponsiveCard>
       <div className="w-full h-[70%] relative rounded-t-lg">
         <Image
           src={imgSrc}
@@ -21,6 +21,6 @@ export default function ProductCard(props: propsType) {
       <div className="relative z-20 text-black text-center pt-30">
         <h2>{hospitalName}</h2>
       </div>
-    </div>
+    </ResponsiveCard>
   );
 }
