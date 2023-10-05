@@ -1,8 +1,23 @@
 "use client";
+import React from "react";
 import { useReducer } from "react";
 import ProductCard from "./ProductCard";
+import { hospitals } from "@/constants/hospital";
+import { useRouter } from "next/navigation";
 
-export default function CardPanel() {
+interface Hospital {
+  hospitalName: string;
+  hospitalId: number;
+  imageUrl: string;
+}
+
+interface CardPanelProps {
+  hospitals: Hospital[];
+}
+
+const CardPanel = (props: CardPanelProps) => {
+  const { hospitals } = props;
+  const router = useRouter();
   const ratingReducer = (
     ratingMap: Map<string, number>,
     action: { type: string; hospitalName: string; rating: number }
@@ -25,22 +40,20 @@ export default function CardPanel() {
     new Map<string, number>()
   );
 
-  const hospitalName = [
-    "Chulalongkorn Hospital",
-    "Rajavithi Hospital",
-    "Thammasat University Hospital",
-  ];
-  const imagePath = ["/chula.jpg", "/rajavithi.jpg", "/thammasat.jpg"];
-
   return (
     <div className="flex flex-col justify-center space-x-10 space-y-10 w-full items-center m-10 ">
       <div className="flex flex-row space-x-10">
-        {hospitalName.map((hospital, index) => {
+        {hospitals.map((hospital, index) => {
           return (
             <ProductCard
-              hospitalName={hospital}
-              imgSrc={imagePath[index]}
-              rating={ratingMap.has(hospital) ? ratingMap.get(hospital)! : 0}
+              key={hospital.hospitalId}
+              hospitalName={hospital.hospitalName}
+              imgSrc={hospital.imageUrl}
+              rating={
+                ratingMap.has(hospital.hospitalName)
+                  ? ratingMap.get(hospital.hospitalName)!
+                  : 0
+              }
               onRating={(hospitalName: string, rating: number) =>
                 dispatchRating({
                   type: "add",
@@ -48,6 +61,7 @@ export default function CardPanel() {
                   rating: rating,
                 })
               }
+              hospitalId={hospital.hospitalId}
             />
           );
         })}
@@ -70,12 +84,8 @@ export default function CardPanel() {
           );
         })}
       </div>
-      {/* <ProductCard hospitalName="Chulalongkorn Hospital" imgSrc="/chula.jpg" />
-      <ProductCard hospitalName="Rajavithi Hospital" imgSrc="/rajavithi.jpg" />
-      <ProductCard
-        hospitalName="Thammasat University Hospital"
-        imgSrc="/thammasat.jpg"
-      /> */}
     </div>
   );
-}
+};
+
+export default CardPanel;
