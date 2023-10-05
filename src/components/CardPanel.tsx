@@ -2,8 +2,6 @@
 import React from "react";
 import { useReducer } from "react";
 import ProductCard from "./ProductCard";
-import { hospitals } from "@/constants/hospital";
-import { useRouter } from "next/navigation";
 
 interface Hospital {
   hospitalName: string;
@@ -17,7 +15,6 @@ interface CardPanelProps {
 
 const CardPanel = (props: CardPanelProps) => {
   const { hospitals } = props;
-  const router = useRouter();
   const ratingReducer = (
     ratingMap: Map<string, number>,
     action: { type: string; hospitalName: string; rating: number }
