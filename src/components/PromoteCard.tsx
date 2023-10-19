@@ -17,15 +17,7 @@ const PromoteCard = (props: propsType) => {
 
   return (
     <div className="relative border rounded-md shadow-lg overflow-hidden w-128 flex flex-row">
-      {/* <video
-        ref={videoRef}
-        className="w-[50%]"
-        onClick={toggleVideoPlayback}
-        muted
-      >
-        <source src="/getvaccine.mp4" type="video/mp4" />
-        Your browser does not support the video tag.
-      </video> */}
+
       <VideoPlayer
         videoSrc={"/getvaccine.mp4"}
         isPlaying={isPlaying}

@@ -5,8 +5,8 @@ import Link from "next/link";
 interface propsType {
   hospitalName: string;
   imgSrc: string;
-  rating: number;
-  onRating: Function;
+  rating?: number;
+  onRating?: Function;
   hospitalId: number;
 }
 
@@ -27,14 +27,16 @@ export default function ProductCard(props: propsType) {
         <div className="relative z-20 text-black text-center pt-30">
           <h2>{hospitalName}</h2>
         </div>
-        <Rating
-          value={rating}
-          onChange={(e, value) => {
-            e.preventDefault();
-            e.stopPropagation();
-            onRating(hospitalName, value);
-          }}
-        />
+        {rating && onRating && (
+          <Rating
+            value={rating}
+            onChange={(e, value) => {
+              e.preventDefault();
+              e.stopPropagation();
+              onRating(hospitalName, value);
+            }}
+          />
+        )}
       </Link>
     </ResponsiveCard>
   );
