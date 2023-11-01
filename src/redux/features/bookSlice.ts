@@ -20,7 +20,6 @@ export const bookSlice = createSlice({
         state.booking = action.payload;
         state.isBooked = true;
       }
-      // If they have already booked, you can handle this by showing an error or any other logic
     },
     cancelBooking: (state) => {
       state.booking = null;
