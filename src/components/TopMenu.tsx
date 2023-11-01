@@ -17,19 +17,52 @@ export default async function TopMenu() {
         sizes="100vh"
       />
       <TopMenuText text="Booking" link="/booking" />
-      {session ? (
-        <Link href="/api/auth/signout">
-          <div className=" absolute left-0 h-full px-3 flex items-center justify-center bg-yellow-100">
-            Sign-Out
-          </div>
-        </Link>
-      ) : (
-        <Link href="/api/auth/signin">
-          <div className=" absolute left-0 h-full px-3 flex items-center justify-center bg-yellow-100">
+      <div className=" absolute left-0 h-full px-3 flex items-center justify-center">
+        {session ? (
+          <>
+            <Link
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+                background: "rgb(254 249 195)",
+                padding: "10px",
+              }}
+              href="/api/auth/signout"
+            >
+              Sign-Out
+            </Link>
+            <Link
+              style={{
+                display: "flex",
+                justifyContent: "center",
+                alignItems: "center",
+                height: "100%",
+                background: "cyan",
+                padding: "10px",
+              }}
+              href="/mybooking"
+            >
+              My Booking
+            </Link>
+          </>
+        ) : (
+          <Link
+            style={{
+              display: "flex",
+              justifyContent: "center",
+              alignItems: "center",
+              height: "100%",
+              background: "rgb(254 249 195)",
+              padding: "10px",
+            }}
+            href="/api/auth/signin"
+          >
             Sign-In
-          </div>
-        </Link>
-      )}
+          </Link>
+        )}
+      </div>
     </div>
   );
 }

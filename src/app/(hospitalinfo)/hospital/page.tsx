@@ -5,6 +5,7 @@ import { fetchHospitals } from "@/libs/getHospitals";
 
 export default function Home() {
   const hospitals = fetchHospitals();
+
   return (
     <main className="flex flex-col justify-between items-center p-24 pt-0 min-h-screen">
       {/* <CardPanel hospitals={hospitals} /> */}
