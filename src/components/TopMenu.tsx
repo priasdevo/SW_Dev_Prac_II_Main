@@ -16,7 +16,9 @@ export default async function TopMenu() {
         height={0}
         sizes="100vh"
       />
+
       <TopMenuText text="Booking" link="/booking" />
+      <TopMenuText text="Hospitals" link="/hospital" />
       <div className=" absolute left-0 h-full px-3 flex items-center justify-center">
         {session ? (
           <>

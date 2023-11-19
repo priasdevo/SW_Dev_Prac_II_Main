@@ -11,9 +11,8 @@ export default async function Home() {
   const hospitals = fetchHospitals();
 
   const session = await getServerSession(authOptions);
-  if (!session || !session.user.token) return null;
-
-  const profile = await getUserProfile(session.user.token);
+  const isLogin = !session || !session.user.token;
+  const profile = isLogin ? null : await getUserProfile(session.user.token);
 
   return (
     <main className="flex flex-col justify-between items-center p-24 pt-0 min-h-screen">
@@ -26,7 +25,7 @@ export default async function Home() {
         }
       >
         <HospitalCatalog hospitalJson={hospitals} />
-        {profile.data.role === "admin" && <AddHospitalForm />}
+        {profile && profile.data.role === "admin" && <AddHospitalForm />}
       </Suspense>
     </main>
   );
